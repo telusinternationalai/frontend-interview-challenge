@@ -64,7 +64,7 @@ All endpoints below can be reached by sending requests to the localhost URL (ava
 
 For instance, if you start your development environment locally (by running the `yarn start` command) and the application is served through `http://localhost:3000`. 
 
-You should be able retrieve information about a particular person if you send a GET request to the following address: `http://localhost:3000/persons/1`
+You should be able to retrieve information about a particular person if you send a GET request to the following address: `http://localhost:3000/persons/:id`, example: `http://localhost:3000/persons/6ad313a7d001e`
 
 All endpoints has the following response body whenever an error has occurred:
 
