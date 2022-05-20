@@ -7,7 +7,7 @@ import { isValidDateString, personSchema } from "./validationSchemas";
 const PAGE_SIZE = 5;
 
 const getAllPersonsHandler = rest.get("/persons", (req, res, ctx) => {
-  let pageNumber = +req.url.searchParams.get("page") || 1;
+  const pageNumber = +req.url.searchParams.get("page") || 1;
   const start = (pageNumber - 1) * PAGE_SIZE;
   const stop = start + PAGE_SIZE;
   const page = allPersons.slice(start, stop).map((person) => {
