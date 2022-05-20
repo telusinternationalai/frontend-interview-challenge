@@ -24,9 +24,7 @@ Create a React application with the following views and functionality:
 
 ### `List View`
 
-This view should be the first thing present when your application has successfully loaded. A table with four columns (ID, Title, Name and Email) should be shown,
-like the following wireframe below. The data required for this table will be present in our mocked backend. For more details about our mocked backend, \
-take a look at the `Available endpoints` section.
+This view should be the first thing present when your application has successfully loaded. A table with four columns (ID, Title, Name and Email) should be shown, like the following wireframe below. The data required for this table will be present in our mocked backend. For more details about our mocked backend, take a look at the `Available endpoints` section.
 
 ![wireframe of list view](readme_images/list-page.png)
 
@@ -36,9 +34,7 @@ In addition to rendering the table, we also expect the following:
 
 ### `Details Modal`
 
-This modal should be displayed whenever a row in the table is clicked. The modal should show more information about the person, like the following \
-wireframe below. A user should also be to update any information about the person shown in the modal and should also be able to delete the person. \
-To reiterate, this data is available from our mocked backend, as shown in the `Available endpoints` section.
+This modal should be displayed whenever a row in the table is clicked. The modal should show more information about the person, like the following wireframe below. A user should also be to update any information about the person shown in the modal and should also be able to delete the person. To reiterate, this data is available from our mocked backend, as shown in the `Available endpoints` section.
 
 ![wireframe details modal](readme_images/details-page.png)
 
@@ -52,9 +48,7 @@ In addition to showing the modal, we also expect the following:
 
 ### `Add Modal`
 
-This modal should be displayed whenever we click on the plus button present in the bottom far-right of the wireframe. The user will then need to \
-add the following information about the person they would like to add. In addition, the user should be able to add more than one favorite book \
-about the person they would like to add if they wish. Lastly, all fields in the modal below besides the `Comment` field are required when adding a person.
+This modal should be displayed whenever we click on the plus button present in the bottom far-right of the wireframe. The user will then need to add the following information about the person they would like to add. In addition, the user should be able to add more than one favorite book about the person they would like to add if they wish. Lastly, all fields in the modal below besides the `Comment` field are required when adding a person.
 
 ![wireframe of add modal](readme_images/add-modal.png)
 
@@ -68,7 +62,8 @@ In addition to presenting the modal, we also expect the following:
 
 All endpoints below can be reached by sending requests to the localhost URL (available when you run your app locally).
 
-For instance, if you start your development environment locally (by running the `yarn start` command) and the application is served through `http://localhost:3000`. \
+For instance, if you start your development environment locally (by running the `yarn start` command) and the application is served through `http://localhost:3000`. 
+
 You should be able retrieve information about a particular person if you send a GET request to the following address: `http://localhost:3000/persons/1`
 
 All endpoints has the following response body whenever an error has occurred:
