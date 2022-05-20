@@ -24,7 +24,7 @@ Create a React application with the following views and functionality:
 
 ### `List View`
 
-This view should be the first thing present when your application has successfully loaded. A table with four columns (ID, Title, Name and Email) should be shown, \ 
+This view should be the first thing present when your application has successfully loaded. A table with four columns (ID, Title, Name and Email) should be shown,
 like the following wireframe below. The data required for this table will be present in our mocked backend. For more details about our mocked backend, \
 take a look at the `Available endpoints` section.
 
