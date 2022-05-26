@@ -13,14 +13,15 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-
 import axios from "axios";
+import { LoadingComponent } from "../components/LoadingComponent";
 export function ListView() {
   const [pageData, setPageData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+      setIsLoading(true);
     fetchPageData(currentPage);
   }, [currentPage]);
 
@@ -39,7 +40,7 @@ export function ListView() {
   return (
     <Container>
       {isLoading ? (
-        <h1>Loading</h1>
+        <LoadingComponent isLoading={isLoading} />
       ) : (
         <Box>
           <TableContainer component={Paper}>
