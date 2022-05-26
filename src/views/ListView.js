@@ -41,12 +41,12 @@ export function ListView() {
       {isLoading ? (
         <h1>Loading</h1>
       ) : (
-        <Box sx={{ height: "39vh" }}>
+        <Box>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }}>
+            <Table sx={{ minWidth: 400 }}>
               <TableHead>
                 <TableRow>
-                  <TableCell>ID</TableCell>
+                  <TableCell>ID </TableCell>
                   <TableCell align="left">Title</TableCell>
                   <TableCell align="left">Name</TableCell>
                   <TableCell align="left">Email</TableCell>
@@ -54,7 +54,7 @@ export function ListView() {
               </TableHead>
               <TableBody>
                 {pageData.results.map((row) => (
-                  <TableRow key={row.name} hover={true} sx={{}}>
+                  <TableRow key={row.name} hover={true}>
                     <TableCell component="th" scope="row">
                       {row.id}
                     </TableCell>
@@ -66,29 +66,36 @@ export function ListView() {
                   </TableRow>
                 ))}
               </TableBody>
-              <TableFooter>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    const previousPage = currentPage - 1;
-                    setCurrentPage(previousPage);
-                  }}
-                  disabled={currentPage === 1 ? true : false}
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    const nextPage = currentPage + 1;
-                    setCurrentPage(nextPage);
-                  }}
-                  disabled={pageData.hasNextPage ? false : true}
-                >
-                  Next
-                </Button>
-              </TableFooter>
             </Table>
+            <TableFooter
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                m: 1,
+              }}
+            >
+              <Button
+                variant="contained"
+                onClick={() => {
+                  const previousPage = currentPage - 1;
+                  setCurrentPage(previousPage);
+                }}
+                disabled={currentPage === 1 ? true : false}
+              >
+                Previous
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  const nextPage = currentPage + 1;
+                  setCurrentPage(nextPage);
+                }}
+                disabled={pageData.hasNextPage ? false : true}
+              >
+                Next
+              </Button>
+            </TableFooter>
           </TableContainer>
         </Box>
       )}
