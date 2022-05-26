@@ -1,11 +1,17 @@
-import './App.css';
-import ListView from './views/ListView';
-
+import "./App.css";
+import { ListView } from "./views/ListView";
+import { Container } from "@material-ui/core";
 function App() {
   return (
-    <div className="App">
-     <ListView/>
-    </div>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: { sm: "column" },
+        minWidth: "500px",
+      }}
+    >
+      <ListView />
+    </Container>
   );
 }
 
