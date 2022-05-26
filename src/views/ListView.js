@@ -9,19 +9,21 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
+
   TableHead,
   TableRow,
 } from "@mui/material";
 import axios from "axios";
 import { LoadingComponent } from "../components/LoadingComponent";
+import { ErrorComponent } from "../components/ErrorComponent";
 export function ListView() {
-  const [pageData, setPageData] = useState([]);
+  const [pageData, setPageData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(() => {
-      setIsLoading(true);
+    setIsLoading(true);
     fetchPageData(currentPage);
   }, [currentPage]);
 
@@ -29,19 +31,29 @@ export function ListView() {
     axios
       .get(`http://localhost:3000/persons?page=${num}`)
       .then((res) => {
-        setPageData(res.data);
-        setIsLoading(false);
+        if (res.data.errors) {
+          setFetchError(res.data.errors[0]);
+        } else {
+          setPageData(res.data);
+          setIsLoading(false);
+        }
       })
       .catch((err) => {
+        setFetchError(err.message);
+        setIsLoading(false);
         console.log(err);
       });
   };
 
   return (
     <Container>
-      {isLoading ? (
-        <LoadingComponent isLoading={isLoading} />
-      ) : (
+      {fetchError ? (
+        <ErrorComponent error={fetchError} setError={setFetchError} />
+      ) : null}
+
+      {isLoading ? <LoadingComponent isLoading={isLoading} /> : null}
+
+      {pageData ? (
         <Box>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 400 }}>
@@ -54,8 +66,8 @@ export function ListView() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {pageData.results.map((row) => (
-                  <TableRow key={row.name} hover={true}>
+                {pageData.results.map((row, i) => (
+                  <TableRow key={i} hover={true}>
                     <TableCell component="th" scope="row">
                       {row.id}
                     </TableCell>
@@ -63,12 +75,12 @@ export function ListView() {
                     <TableCell align="left">
                       {row.firstName + " " + row.lastName}
                     </TableCell>
-                    <TableCell align="leftt">{row.email}</TableCell>
+                    <TableCell align="left">{row.email}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
-            <TableFooter
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -96,10 +108,11 @@ export function ListView() {
               >
                 Next
               </Button>
-            </TableFooter>
+            </Box>
           </TableContainer>
+         
         </Box>
-      )}
+      ) : <Box sx={{pt: 10}}>Could Not Load Data</Box>}
     </Container>
   );
 }
