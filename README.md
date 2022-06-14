@@ -35,7 +35,7 @@ In addition to rendering the table, we also expect the following:
 
 ### `Details Modal`
 
-This modal should be displayed whenever a row in the table is clicked. The modal should show more information about the person, like the following wireframe below. A user should also be to _firstName_, _lastName_, _birthday_ and _comment_ through the endpoint and should also be able to delete the person. To reiterate, this data is available from our mocked backend, as shown in the `Available endpoints` section.
+This modal should be displayed whenever a row in the table is clicked. The modal should show more information about the person, like the following wireframe below. A user should also be to edit _firstName_, _lastName_, _birthday_ and _comment_ through the endpoint and should also be able to delete the person. To reiterate, this data is available from our mocked backend, as shown in the `Available endpoints` section.
 
 ![wireframe details modal](readme_images/details-page.png)
 
