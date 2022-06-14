@@ -6,7 +6,14 @@ import { isValidDateString, personSchema } from "./validationSchemas";
 
 const PAGE_SIZE = 5;
 
-const getAllPersonsHandler = rest.get("/persons", (req, res, ctx) => {
+async function delay() {
+  return new Promise((res) => {
+    setTimeout(() => res(), 1500);
+  });
+}
+
+const getAllPersonsHandler = rest.get("/persons", async (req, res, ctx) => {
+  await delay();
   const pageNumber = +req.url.searchParams.get("page") || 1;
   const start = (pageNumber - 1) * PAGE_SIZE;
   const stop = start + PAGE_SIZE;
@@ -18,7 +25,8 @@ const getAllPersonsHandler = rest.get("/persons", (req, res, ctx) => {
   return res(ctx.status(200), ctx.json({ results: page, hasNextPage }));
 });
 
-const getPersonByIdHandler = rest.get("/persons/:id", (req, res, ctx) => {
+const getPersonByIdHandler = rest.get("/persons/:id", async (req, res, ctx) => {
+  await delay();
   const { id } = req.params;
   const person = allPersons.find((person) => person.id === id);
 
@@ -33,6 +41,7 @@ const getPersonByIdHandler = rest.get("/persons/:id", (req, res, ctx) => {
 });
 
 const postPersonHandler = rest.post("/persons", async (req, res, ctx) => {
+  await delay();
   let newPerson;
   try {
     newPerson = await personSchema.validate(req.body);
@@ -44,7 +53,8 @@ const postPersonHandler = rest.post("/persons", async (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(newPerson));
 });
 
-const patchPersonHandler = rest.patch("/persons/:id", (req, res, ctx) => {
+const patchPersonHandler = rest.patch("/persons/:id", async (req, res, ctx) => {
+  await delay();
   const { id } = req.params;
   const { firstName, lastName, birthday, comment } = req.body;
 
@@ -81,13 +91,17 @@ const patchPersonHandler = rest.patch("/persons/:id", (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(personToUpdate));
 });
 
-const deletePersonHandler = rest.delete("/persons/:id", (req, res, ctx) => {
-  const { id } = req.params;
-  const indexToDelete = allPersons.findIndex((person) => person.id === id);
-  allPersons.splice(indexToDelete, 1);
+const deletePersonHandler = rest.delete(
+  "/persons/:id",
+  async (req, res, ctx) => {
+    await delay();
+    const { id } = req.params;
+    const indexToDelete = allPersons.findIndex((person) => person.id === id);
+    allPersons.splice(indexToDelete, 1);
 
-  return res(ctx.status(204));
-});
+    return res(ctx.status(204));
+  }
+);
 
 export const handlers = [
   getAllPersonsHandler,
